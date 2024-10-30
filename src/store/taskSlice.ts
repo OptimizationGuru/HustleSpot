@@ -8,7 +8,7 @@ const initialState: Task[] = [
     title: 'Task 1',
     desc: 'Description 1',
     status: TaskStatus.PENDING,
-    dueDate: Date.now() + 1000 * 60 * 60 * 24 * 7,
+    dueDate: Date.now(),
   },
 ];
 

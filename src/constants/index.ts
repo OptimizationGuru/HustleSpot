@@ -8,3 +8,16 @@ export enum TaskStatus {
   COMPLETED = 2,
   DELETED = -1,
 }
+
+export const todaytDate = new Date();
+currentDate.setHours(0, 0, 0, 0);
+
+export const currentDateTimestamp = todaytDate.getTime();
+
+export const tomorrowDateTimestamp = new Date(
+  currentDateTimestamp + 24 * 60 * 60 * 1000
+).getTime();
+
+export const yesterdayDateTimestamp = new Date(
+  currentDateTimestamp - 24 * 60 * 60 * 1000
+).getTime();

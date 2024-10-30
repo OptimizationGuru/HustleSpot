@@ -1,25 +1,61 @@
 import React from 'react';
+import { CiEdit, CiTrash } from 'react-icons/ci';
+import { Task } from '../../types';
+import { getStatusLabel } from '../../helpers/GetTaskStatus';
+import { useDispatch } from 'react-redux';
+import { deleteTask } from '../../store/taskSlice';
 
-const TaskCard = () => {
+interface TaskCardProps {
+  taskDetails: Task;
+}
+
+const TaskCard: React.FC<TaskCardProps> = ({ taskDetails }) => {
+  const dispatch = useDispatch();
+
+  const deleteTaskbyId = (task_id: number) => {
+    dispatch(deleteTask(task_id));
+  };
+
   return (
-    <div className="w-1/3 flex flex-col gap-8 items-center justify-center mx-auto shadow-lg rounded-lg bg-gray-300 p-4 m-4 border border-black">
-      <div className="w-full flex items-center  gap-4">
-        <label>Title :</label>
-        <p>fwefwewf</p>
-      </div>
-      <div className="w-full flex flex-col gap-4">
-        <label>Description :</label>
-        <p>fwefwewf</p>
+    <div className="relative w-80 md:w-96 flex flex-col gap-6 items-center justify-center mx-auto shadow-2xl rounded-xl bg-gradient-to-b from-blue-50 to-blue-100 p-8 m-8 border border-blue-300 transition-transform transform hover:scale-105 hover:shadow-3xl">
+      <div className="absolute top-4 right-4 flex gap-2">
+        <span className="bg-teal-500 text-white text-xs font-semibold px-4 py-2 rounded-2xl shadow-md">
+          {getStatusLabel(taskDetails?.status)}
+        </span>
+        <span className="bg-blue-500 text-white text-xs font-semibold p-2 rounded-full shadow-md hover:bg-blue-600 transition duration-300">
+          <CiEdit size={20} />
+        </span>
+        <span className="bg-red-500 text-white text-xs font-semibold p-2 rounded-full shadow-md hover:bg-red-600 transition duration-300">
+          <CiTrash
+            size={20}
+            onClick={() => {
+              deleteTaskbyId(taskDetails.id);
+            }}
+          />
+        </span>
       </div>
 
-      <div className="w-full flex flex-col gap-4">
-        <label>Status :</label>
-        <p>fwefwewf</p>
+      <div className="w-full flex items-center gap-4 mt-12">
+        <span className="bg-purple-200 text-purple-800 text-xs font-semibold px-3 py-1 rounded-full shadow-md">
+          Title
+        </span>
+        <p className="text-gray-800 font-semibold text-lg truncate">
+          {taskDetails?.title}
+        </p>
       </div>
 
-      <div className="w-full flex flex-col gap-4">
-        <label>Due Date :</label>
-        <p>fwefwewf</p>
+      <div className="w-full flex flex-col gap-2">
+        <span className="bg-blue-200 text-blue-800 text-xs font-semibold px-3 py-1 rounded-full shadow-md">
+          Description
+        </span>
+        <p className="text-gray-700 text-sm truncate">{taskDetails?.desc}</p>
+      </div>
+
+      <div className="w-full flex flex-col gap-2">
+        <span className="bg-green-200 text-green-800 text-xs font-semibold px-3 py-1 rounded-full shadow-md">
+          Due Date
+        </span>
+        <p className="text-gray-700 text-sm">{taskDetails?.dueDate}</p>
       </div>
     </div>
   );
