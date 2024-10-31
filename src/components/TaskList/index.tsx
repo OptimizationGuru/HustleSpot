@@ -65,7 +65,7 @@ const TaskList: React.FC<TaskListProps> = ({ onCreateTaskClick }) => {
       if (tasks.length > 0 && activeTaskList?.length === 0)
         setIsSearchKeyOn(true);
     },
-    [tasks]
+    [tasks, activeTaskList?.length]
   );
 
   useEffect(() => {
