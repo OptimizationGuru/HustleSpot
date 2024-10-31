@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import TaskCard from '../TaskCard';
 import TaskListHeader from '../TaskListHeader';
 import { useSelector, useDispatch } from 'react-redux';
@@ -18,6 +18,30 @@ const TaskList = () => {
   const [isDefaultView, setIsDefaultView] = useState(true);
   const [currentStatus, setCurrentStatus] = useState<TaskStatus | null>(null);
 
+ 
+
+  const FilterTaskbyStatus = useCallback(
+    (status: TaskStatus) => {
+      let filteredTasks;
+      setCurrentStatus(status);
+      if (status === TaskStatus.ALL) {
+        filteredTasks = tasks.filter(
+          (task) => task.status !== TaskStatus.DELETED
+        );
+        setIsDefaultView(false);
+      } else {
+        filteredTasks = tasks.filter(
+          (task) => task.status === status && task.status !== TaskStatus.DELETED
+        );
+        setIsDefaultView(false);
+      }
+
+      setActiveTaskList(filteredTasks);
+      setIsSortActive(false);
+      setIsFiltered(true);
+    },
+    [tasks]
+  );
   useEffect(() => {
     if (currentStatus !== null) {
       FilterTaskbyStatus(currentStatus);
@@ -26,28 +50,7 @@ const TaskList = () => {
         tasks.filter((task) => task.status !== TaskStatus.DELETED)
       );
     }
-  }, [tasks, currentStatus]);
-
-  const FilterTaskbyStatus = (status: TaskStatus) => {
-    setCurrentStatus(status);
-    let filteredTasks;
-
-    if (status === TaskStatus.ALL) {
-      filteredTasks = tasks.filter(
-        (task) => task.status !== TaskStatus.DELETED
-      );
-      setIsDefaultView(false);
-    } else {
-      filteredTasks = tasks.filter(
-        (task) => task.status === status && task.status !== TaskStatus.DELETED
-      );
-      setIsDefaultView(false);
-    }
-
-    setActiveTaskList(filteredTasks);
-    setIsSortActive(false);
-    setIsFiltered(true);
-  };
+  }, [tasks, currentStatus, FilterTaskbyStatus]);
 
   const SortTasks = () => {
     setIsSortActive(true);
