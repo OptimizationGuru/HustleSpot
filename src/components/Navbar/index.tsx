@@ -25,12 +25,12 @@ const Navbar: React.FC<NavbarProps> = ({
   return (
     <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between p-6 bg-gray-800 text-gray-100 w-full shadow-lg fixed top-0 z-50">
       <div className="flex items-center justify-between gap-2 w-full sm:w-full ml-4 sm:ml-20">
-        <span className="px-4 py-2 bg-gray-700 text-white font-semibold rounded-full shadow-md">
+        <span className="px-4 py-2 text-xl bg-gray-700 text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-blue-500 font-semibold rounded-full shadow-md">
           Hustle
         </span>
         <button
           onClick={onCreateTaskClick}
-          className="px-4 py-2 sm:px-6 sm:py-3 font-semibold rounded-lg shadow-lg bg-blue-600 text-white hover:bg-blue-700 transition-all duration-300"
+          className="px-4 py-2 sm:px-6 sm:py-3 font-semibold rounded-lg shadow-lg bg-blue-600 text-white hover:bg-blue-500 transition-all duration-300"
         >
           Create Task
         </button>
