@@ -1,6 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 import taskReducer, { TaskState } from './taskSlice';
 import throttle from 'lodash/throttle';
+import { delayTime } from '../constants';
 
 export interface RootState {
   task: TaskState;
@@ -35,7 +36,7 @@ const saveState = throttle((state: RootState) => {
   } catch (err) {
     console.error('Failed to save state to local storage:', err);
   }
-}, 1000);
+}, delayTime);
 
 const store = configureStore({
   reducer: {

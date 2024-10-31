@@ -5,12 +5,14 @@ import { getStatusLabel } from '../../helpers/GetTaskStatus';
 import { useDispatch } from 'react-redux';
 import { deleteTask } from '../../store/taskSlice';
 import EditTaskDialog from '../EditTask';
+import { formatToIndianDate } from '../../utils/dateFunction';
 
 interface TaskCardProps {
   taskDetails: Task;
+  onUpdate: (updatedTask: Task) => void;
 }
 
-const TaskCard: React.FC<TaskCardProps> = ({ taskDetails }) => {
+const TaskCard: React.FC<TaskCardProps> = ({ taskDetails, onUpdate }) => {
   const dispatch = useDispatch();
   const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
 
@@ -19,28 +21,30 @@ const TaskCard: React.FC<TaskCardProps> = ({ taskDetails }) => {
   };
 
   const handleEditClick = () => {
-    setIsEditDialogOpen(true); // Open the edit dialog
+    setIsEditDialogOpen(true);
   };
+
+  const { label: statusLabel, color: statusColor } = getStatusLabel(
+    taskDetails?.status
+  );
+  const formattedDueDate = formatToIndianDate(taskDetails?.dueDate);
 
   return (
     <div className="relative w-80 md:w-96 flex flex-col gap-6 items-center justify-center mx-auto shadow-2xl rounded-xl bg-gradient-to-b from-blue-50 to-blue-100 p-8 m-8 border border-blue-300 transition-transform transform hover:scale-105 hover:shadow-3xl">
       <div className="absolute top-4 right-4 flex gap-2">
-        <span className="bg-teal-500 text-white text-xs font-semibold px-4 py-2 rounded-2xl shadow-md">
-          {getStatusLabel(taskDetails?.status)}
+        <span
+          className={`${statusColor} text-white text-xs font-semibold px-4 py-2 rounded-2xl shadow-md`}
+        >
+          {statusLabel}
         </span>
         <span
           className="bg-blue-500 text-white text-xs font-semibold p-2 rounded-full shadow-md hover:bg-blue-600 transition duration-300 cursor-pointer"
-          onClick={handleEditClick} // Trigger edit
+          onClick={handleEditClick}
         >
           <CiEdit size={20} />
         </span>
         <span className="bg-red-500 text-white text-xs font-semibold p-2 rounded-full shadow-md hover:bg-red-600 transition duration-300 cursor-pointer">
-          <CiTrash
-            size={20}
-            onClick={() => {
-              deleteTaskbyId(taskDetails.id);
-            }}
-          />
+          <CiTrash size={20} onClick={() => deleteTaskbyId(taskDetails.id)} />
         </span>
       </div>
 
@@ -64,14 +68,17 @@ const TaskCard: React.FC<TaskCardProps> = ({ taskDetails }) => {
         <span className="bg-green-200 text-green-800 text-xs font-semibold px-3 py-1 rounded-full shadow-md">
           Due Date
         </span>
-        <p className="text-gray-700 text-sm">{taskDetails?.dueDate}</p>
+        <p className="text-gray-700 text-sm">{formattedDueDate}</p>
       </div>
 
-      {/* Edit Task Dialog */}
       <EditTaskDialog
         isOpen={isEditDialogOpen}
-        onClose={() => setIsEditDialogOpen(false)} // Close the dialog
+        onClose={() => setIsEditDialogOpen(false)}
         taskDetails={taskDetails}
+        onSave={(updatedTask: Task) => {
+          onUpdate(updatedTask);
+          setIsEditDialogOpen(false);
+        }}
       />
     </div>
   );

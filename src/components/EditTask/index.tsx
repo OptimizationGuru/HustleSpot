@@ -9,12 +9,14 @@ interface EditTaskDialogProps {
   isOpen: boolean;
   onClose: () => void;
   taskDetails: Task;
+  onSave?: (updatedTask: Task) => void;
 }
 
 const EditTaskDialog: React.FC<EditTaskDialogProps> = ({
   isOpen,
   onClose,
   taskDetails,
+  onSave,
 }) => {
   const dispatch = useDispatch();
 
@@ -34,15 +36,20 @@ const EditTaskDialog: React.FC<EditTaskDialogProps> = ({
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    dispatch(
-      updateTask({
-        ...taskDetails,
-        title,
-        desc,
-        dueDate: new Date(dueDate).getTime(),
-        status,
-      })
-    );
+    const updatedTask = {
+      ...taskDetails,
+      title,
+      desc,
+      dueDate: new Date(dueDate).getTime(),
+      status,
+    };
+
+    dispatch(updateTask(updatedTask));
+
+    if (onSave) {
+      onSave(updatedTask);
+    }
+
     onClose();
   };
 

@@ -22,3 +22,5 @@ export const tomorrowDateTimestamp = new Date(
 export const yesterdayDateTimestamp = new Date(
   currentDateTimestamp - 24 * 60 * 60 * 1000
 ).getTime();
+
+export const delayTime = 1000;

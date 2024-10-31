@@ -25,7 +25,6 @@ const NewTask: React.FC<NewTaskProps> = ({ onClose }) => {
 
   const validationSchema = Yup.object().shape({
     title: Yup.string().required('Title is required'),
-    // desc: Yup.string().required('Description is required'),
     dueDate: Yup.date().nullable().required('Due date is required'),
   });
 

@@ -1,16 +1,21 @@
 import { TaskStatus } from '../constants';
 
-export const getStatusLabel = (status: number): string => {
+interface StatusDetails {
+  label: string;
+  color: string;
+}
+
+export const getStatusLabel = (status: number): StatusDetails => {
   switch (status) {
     case TaskStatus.PENDING:
-      return 'Pending';
+      return { label: 'Pending', color: 'bg-amber-400' };
     case TaskStatus.IN_PROGRESS:
-      return 'In Progress';
+      return { label: 'In Progress', color: 'bg-teal-400' };
     case TaskStatus.COMPLETED:
-      return 'Completed';
+      return { label: 'Completed', color: 'bg-lime-500' };
     case TaskStatus.DELETED:
-      return 'Deleted';
+      return { label: 'Deleted', color: 'bg-rose-600' };
     default:
-      return 'Unknown Status';
+      return { label: 'Unknown Status', color: 'bg-gray-500' };
   }
 };
