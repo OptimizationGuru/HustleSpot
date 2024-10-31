@@ -2,12 +2,19 @@ import React, { useState, useEffect, useCallback } from 'react';
 import TaskCard from '../TaskCard';
 import TaskListHeader from '../TaskListHeader';
 import { filterTasksByDefaultDates } from '../../helpers/FilterTask';
-import { taskNotFoundMsg, TaskStatus, taskTodayMsg, taskTomorrowMsg, taskYesterdayMsg } from '../../constants';
+import {
+  taskNotFoundMsg,
+  TaskStatus,
+  taskTodayMsg,
+  taskTomorrowMsg,
+  taskYesterdayMsg,
+} from '../../constants';
 import { Task } from '../../types';
 import { updateTask } from '../../store/taskSlice';
-import NoTasksCard from '../NoTAskCard/index';
 import useFilterTaskbySearchKey from '../SearchTask/SearchTask';
 import { useDispatch } from 'react-redux';
+import WelcomeCard from '../Welcome';
+import NoTasksCard from '../NoTAskCard';
 
 interface TaskListProps {
   onCreateTaskClick: () => void;
@@ -22,6 +29,15 @@ const TaskList: React.FC<TaskListProps> = ({ onCreateTaskClick }) => {
   const [isFiltered, setIsFiltered] = useState(false);
   const [isDefaultView, setIsDefaultView] = useState(true);
   const [currentStatus, setCurrentStatus] = useState<TaskStatus | null>(null);
+  const [welcome, setWelcome] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (tasks.length === 0) {
+      setWelcome(true);
+    } else {
+      setWelcome(false);
+    }
+  }, [tasks]);
 
   const FilterTaskbyStatus = useCallback(
     (status: TaskStatus) => {
@@ -45,6 +61,7 @@ const TaskList: React.FC<TaskListProps> = ({ onCreateTaskClick }) => {
     },
     [tasks]
   );
+
   useEffect(() => {
     if (currentStatus !== null) {
       FilterTaskbyStatus(currentStatus);
@@ -90,6 +107,8 @@ const TaskList: React.FC<TaskListProps> = ({ onCreateTaskClick }) => {
     ];
   }
 
+  if (welcome) return <WelcomeCard onCreateTaskClick={onCreateTaskClick} />;
+
   return (
     <div className="w-full flex flex-col items-center gap-6 sm:gap-8 mt-28 px-2 sm:px-4 lg:px-8">
       <TaskListHeader onSelect={FilterTaskbyStatus} onSort={SortTasks} />
@@ -111,7 +130,10 @@ const TaskList: React.FC<TaskListProps> = ({ onCreateTaskClick }) => {
             ))
           ) : (
             <div className="flex flex-col items-center justify-center w-full p-4 border border-gray-300 rounded-lg shadow-md">
-              <NoTasksCard onCreateTaskClick={onCreateTaskClick} msg={taskNotFoundMsg}/>
+              <NoTasksCard
+                onCreateTaskClick={onCreateTaskClick}
+                msg={taskNotFoundMsg}
+              />
             </div>
           )
         ) : (
