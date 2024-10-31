@@ -7,6 +7,7 @@ export enum TaskStatus {
   IN_PROGRESS = 1,
   COMPLETED = 2,
   DELETED = -1,
+  ALL = 10,
 }
 
 export const todaytDate = new Date();

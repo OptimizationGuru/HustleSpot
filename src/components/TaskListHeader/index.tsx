@@ -35,6 +35,9 @@ const TaskListHeader: React.FC<TaskListHeaderProps> = ({
           <option value="" disabled>
             Filter by Status
           </option>
+          <option value={10} className="text-gray-700 bg-gray-100">
+            All
+          </option>
           <option value={0} className="text-gray-700 bg-gray-100">
             Pending
           </option>

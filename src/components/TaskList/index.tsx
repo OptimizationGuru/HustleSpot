@@ -9,23 +9,31 @@ import { Task } from '../../types';
 
 const TaskList = () => {
   const tasks = useSelector((state: RootState) => state.task.tasks);
-  const [activeTaskList, setActiveTaskList] = useState<Task[]>(tasks);
+  const [activeTaskList, setActiveTaskList] = useState<Task[]>([]);
 
   useEffect(() => {
-    setActiveTaskList(tasks);
+    setActiveTaskList(
+      tasks.filter((task) => task.status !== TaskStatus.DELETED)
+    );
   }, [tasks]);
 
-  const activeTasks = tasks.filter(
-    (task) => task.status !== TaskStatus.DELETED
-  );
-
   const FilterTaskbyStatus = (status: TaskStatus) => {
-    const filteredTasks = activeTasks.filter((task) => task.status === status);
-    setActiveTaskList(filteredTasks);
+    if (status === TaskStatus.ALL) {
+      setActiveTaskList(
+        tasks.filter((task) => task.status !== TaskStatus.DELETED)
+      );
+    } else {
+      const filteredTasks = tasks.filter(
+        (task) => task.status === status && task.status !== TaskStatus.DELETED
+      );
+      setActiveTaskList(filteredTasks);
+    }
   };
 
   const SortTasks = () => {
-    const sortedTasks = [...activeTasks].sort((a, b) => b.dueDate - a.dueDate);
+    const sortedTasks = [...activeTaskList].sort(
+      (a, b) => b.dueDate - a.dueDate
+    );
     setActiveTaskList(sortedTasks);
   };
 
