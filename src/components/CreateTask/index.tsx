@@ -25,7 +25,7 @@ const NewTask: React.FC<NewTaskProps> = ({ onClose }) => {
 
   const validationSchema = Yup.object().shape({
     title: Yup.string().required('Title is required'),
-    desc: Yup.string().required('Description is required'),
+    // desc: Yup.string().required('Description is required'),
     dueDate: Yup.date().nullable().required('Due date is required'),
   });
 
@@ -38,7 +38,15 @@ const NewTask: React.FC<NewTaskProps> = ({ onClose }) => {
       dueDate: new Date(values.dueDate).getTime(),
     };
     setTask(newTask);
-    dispatch(addTask(newTask));
+    dispatch(
+      addTask({
+        id: Date.now(),
+        title: values.title,
+        desc: values.desc,
+        status: Number(values.status),
+        dueDate: new Date(values.dueDate).getTime(),
+      })
+    );
     formikHelpers.resetForm();
     onClose();
   };

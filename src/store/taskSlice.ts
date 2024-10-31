@@ -1,35 +1,30 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { Task } from '../types';
-import { TaskStatus } from '../constants';
 
-const initialState: Task[] = [
-  {
-    id: Date.now(),
-    title: 'Task 1',
-    desc: 'Description 1',
-    status: TaskStatus.PENDING,
-    dueDate: Date.now(),
-  },
-];
+export interface TaskState {
+  tasks: Task[];
+}
+
+const initialState: TaskState = {
+  tasks: [],
+};
 
 const taskSlice = createSlice({
-  name: 'tasks',
+  name: 'task',
   initialState,
   reducers: {
     addTask: (state, action: PayloadAction<Task>) => {
-      state.push(action.payload);
+      state.tasks.push(action.payload);
     },
-
-    deleteTask: (state, action) => {
-      const index = state.findIndex((task) => task.id === action.payload);
-      if (index !== -1) {
-        state[index].status = TaskStatus.DELETED;
-      }
+    deleteTask: (state, action: PayloadAction<number>) => {
+      state.tasks = state.tasks.filter((task) => task.id !== action.payload);
     },
-    updateTask: (state, action) => {
-      const index = state.findIndex((task) => task.id === action.payload.id);
+    updateTask: (state, action: PayloadAction<Task>) => {
+      const index = state.tasks.findIndex(
+        (task) => task.id === action.payload.id
+      );
       if (index !== -1) {
-        state[index] = action.payload;
+        state.tasks[index] = action.payload;
       }
     },
   },
