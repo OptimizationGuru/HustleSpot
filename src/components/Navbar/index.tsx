@@ -10,6 +10,7 @@ interface NavbarProps {
   onCloseSidebar: () => void;
   isSideDrawerOpen: boolean;
 }
+
 const Navbar: React.FC<NavbarProps> = ({
   onCreateTaskClick,
   onCloseSidebar,
@@ -22,14 +23,20 @@ const Navbar: React.FC<NavbarProps> = ({
   };
 
   return (
-    <div className="flex flex-col -mt-4 md:flex-row items-center justify-between gap-4 p-6 bg-gray-800 text-gray-100 w-full shadow-lg fixed top-0 z-50">
-      <div className="flex items-center gap-2 ml-4 md:ml-20">
+    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between p-6 bg-gray-800 text-gray-100 w-full shadow-lg fixed top-0 z-50">
+      <div className="flex items-center justify-between gap-2 w-full sm:w-full ml-4 sm:ml-20">
         <span className="px-4 py-2 bg-gray-700 text-white font-semibold rounded-full shadow-md">
           Hustle
         </span>
+        <button
+          onClick={onCreateTaskClick}
+          className="px-4 py-2 sm:px-6 sm:py-3 font-semibold rounded-lg shadow-lg bg-blue-600 text-white hover:bg-blue-700 transition-all duration-300"
+        >
+          Create Task
+        </button>
       </div>
 
-      <div className="flex flex-grow max-w-md w-full relative mx-4">
+      <div className="flex flex-grow max-w-md w-full relative mx-4 sm:mx-8 mt-4 sm:mt-0">
         <IoSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500" />
         <input
           type="text"
@@ -39,14 +46,6 @@ const Navbar: React.FC<NavbarProps> = ({
         />
       </div>
 
-      <div className="flex items-center mx-4">
-        <button
-          onClick={onCreateTaskClick}
-          className="px-6 py-3 font-semibold rounded-lg shadow-lg bg-blue-600 text-white hover:bg-blue-700 transition-all duration-300"
-        >
-          Create Task
-        </button>
-      </div>
       <Sidebar isOpen={isSideDrawerOpen} onClose={onCloseSidebar}>
         <NewTask onClose={onCloseSidebar} />
       </Sidebar>

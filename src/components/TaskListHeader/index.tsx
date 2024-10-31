@@ -20,12 +20,14 @@ const TaskListHeader: React.FC<TaskListHeaderProps> = ({
   };
 
   return (
-    <div className="flex flex-col md:flex-row items-center justify-between w-full max-w-7xl p-4 bg-gray-800 rounded-lg shadow-md">
-      <h2 className="text-lg font-semibold text-white">Task Lists</h2>
+    <div className="flex flex-col sm:flex-row items-center justify-between w-full max-w-4xl p-4 mt-16 md:justify-between bg-gray-800 rounded-lg shadow-md">
+      <h2 className="text-base sm:text-lg font-semibold text-white">
+        Task Lists
+      </h2>
 
-      <div className="flex gap-4 items-center">
+      <div className="flex gap-2 sm:gap-4 items-center w-full sm:w-auto">
         <select
-          className="px-4 py-[10px] bg-blue-600 text-white font-medium rounded-md hover:bg-blue-700 transition duration-300 shadow-md focus:outline-none"
+          className="flex-grow px-3 py-2 sm:px-4 sm:py-[10px] bg-blue-600 text-white font-medium rounded-md hover:bg-blue-700 transition duration-300 shadow-md focus:outline-none"
           defaultValue="Pending"
           onChange={(e) => {
             const status = Number(e.target.value) as TaskStatus;
@@ -60,18 +62,12 @@ const TaskListHeader: React.FC<TaskListHeaderProps> = ({
 
         <button
           onClick={handleSort}
-          className="flex items-center px-4 py-2 bg-blue-600 text-white font-medium rounded-md hover:bg-blue-700 transition duration-300 shadow-md"
+          className="flex items-center px-3 py-2 sm:px-4 sm:py-2 bg-blue-600 text-white font-medium rounded-md hover:bg-blue-700 transition duration-300 shadow-md"
         >
           {sortOrder === 'asc' ? (
-            <>
-              <FaSortAmountUpAlt className="mr-2" />
-              Sort Ascending
-            </>
+            <FaSortAmountUpAlt />
           ) : (
-            <>
-              <FaSortAmountDownAlt className="mr-2" />
-              Sort Descending
-            </>
+            <FaSortAmountDownAlt />
           )}
         </button>
       </div>

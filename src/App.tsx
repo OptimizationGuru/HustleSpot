@@ -25,7 +25,7 @@ function App() {
             onCloseSidebar={handleCloseSidebar}
           />
         </div>
-        <div className="flex-grow w-full overflow-y-auto">
+        <div className="flex-grow w-full overflow-y-auto px-4 sm:mr-12">
           <TaskList onCreateTaskClick={handleCreateButtonClick} />
         </div>
       </div>

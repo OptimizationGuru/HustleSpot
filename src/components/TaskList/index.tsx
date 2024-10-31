@@ -113,8 +113,10 @@ const TaskList: React.FC<TaskListProps> = ({ onCreateTaskClick }) => {
   if (welcome) return <WelcomeCard onCreateTaskClick={onCreateTaskClick} />;
 
   return (
-    <div className="w-full flex flex-col items-center gap-6 sm:gap-8 mt-28 px-2 sm:px-4 lg:px-8 bg-gray-900 text-gray-200">
-      <TaskListHeader onSelect={FilterTaskbyStatus} onSort={SortTasks} />
+    <div className="w-full flex flex-col items-center md:justify-center gap-6 sm:gap-8 mt-28 px-2  sm:px-4 lg:px-8 bg-gray-900 text-gray-200">
+      <div className='flex flex-col items-center justify-center w-full md:ml-12'>
+        <TaskListHeader onSelect={FilterTaskbyStatus} onSort={SortTasks} />
+      </div>
       <div
         className={`w-full max-w-6xl ${
           isSortActive || isFiltered
