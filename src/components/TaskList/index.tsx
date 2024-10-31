@@ -7,7 +7,7 @@ import { filterTasksByDefaultDates } from '../../helpers/FilterTask';
 import { TaskStatus } from '../../constants';
 import { Task } from '../../types';
 import { updateTask } from '../../store/taskSlice';
-import NoTasksCard from '../NoTaskCard';
+import NoTasksCard from '../../components/NoTaskCard/index';
 
 interface TaskListProps {
   onCreateTaskClick: () => void;
