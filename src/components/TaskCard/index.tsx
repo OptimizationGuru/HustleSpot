@@ -36,7 +36,7 @@ const TaskCard: React.FC<TaskCardProps> = ({
 
   return (
     <div
-      className={`${className} relative w-full max-w-xs sm:max-w-sm md:max-w-md flex flex-col gap-4 items-center justify-center mx-auto shadow-lg rounded-lg bg-gray-800 p-6 sm:p-8 m-4 md:m-8 border border-gray-700 transition-transform transform hover:scale-105 hover:shadow-xl`}
+      className={`${className} relative w-full max-w-xs sm:max-w-sm md:max-w-md flex flex-col gap-4 items-center justify-center mx-auto shadow-2xl rounded-xl bg-gradient-to-b from-gray-800 to-gray-900 p-6 sm:p-8 m-4 md:m-8 border border-gray-700 transition-transform transform hover:scale-105 hover:shadow-3xl`}
     >
       <div className="absolute top-4 right-4 flex gap-2">
         <span
@@ -71,9 +71,11 @@ const TaskCard: React.FC<TaskCardProps> = ({
         <span className="bg-blue-700 text-blue-100 text-xs font-semibold px-3 py-1 rounded-full shadow-md">
           Description
         </span>
-        <p className="text-gray-200 text-sm sm:text-base truncate">
-          {taskDetails?.desc}
-        </p>
+        <div className="max-h-24 overflow-y-auto">
+          <p className="text-gray-200 text-sm sm:text-base">
+            {taskDetails?.desc}
+          </p>
+        </div>
       </div>
 
       <div className="w-full flex flex-col gap-1 sm:gap-2">
