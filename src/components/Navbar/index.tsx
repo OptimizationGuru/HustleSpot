@@ -15,7 +15,7 @@ const Navbar = () => {
     <div className="flex flex-col md:flex-row items-center justify-between gap-4 p-6 rounded-lg shadow-lg bg-gradient-to-r from-gray-200 via-gray-300 to-gray-400 w-screen h-auto">
       <div className="flex items-center gap-2 ml-20">
         <span className="px-4 py-2 bg-gray-200 text-gray-800 font-semibold rounded-full shadow-md">
-          Manage Tasks
+          Hustle
         </span>
       </div>
 
