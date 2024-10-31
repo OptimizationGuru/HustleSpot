@@ -56,25 +56,25 @@ const EditTaskDialog: React.FC<EditTaskDialogProps> = ({
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-      <div className="bg-gradient-to-r from-blue-50 to-blue-100 p-3 sm:p-5 rounded-lg shadow-lg w-64 sm:w-72 md:w-80">
-        <div className="flex justify-between items-center mb-2">
-          <h2 className="text-lg sm:text-xl font-semibold text-gray-800">
+    <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-60">
+      <div className="bg-gray-800 border border-gray-700 p-6 sm:p-8 rounded-lg shadow-lg w-72 sm:w-80 md:w-96">
+        <div className="flex justify-between items-center mb-4">
+          <h2 className="text-lg sm:text-xl font-semibold text-white">
             Edit Task
           </h2>
           <button
             type="button"
             onClick={onClose}
-            className="text-red-500 text-lg hover:text-red-700"
+            className="text-gray-400 hover:text-red-500"
           >
-            <IoMdClose />
+            <IoMdClose size={20} />
           </button>
         </div>
         <form onSubmit={handleSubmit}>
-          <div className="mb-2">
+          <div className="mb-4">
             <label
               htmlFor="title"
-              className="block text-gray-800 font-medium text-sm mb-1 text-left"
+              className="block text-gray-300 font-medium text-sm mb-1 text-left"
             >
               Title:
             </label>
@@ -82,31 +82,31 @@ const EditTaskDialog: React.FC<EditTaskDialogProps> = ({
               type="text"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
-              className="shadow appearance-none border border-blue-300 rounded-md w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-400 bg-blue-50 placeholder-gray-400"
+              className="shadow appearance-none border border-gray-600 rounded-md w-full py-2 px-3 text-white leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500 bg-gray-700 placeholder-gray-400"
               placeholder="Enter task title..."
               required
             />
           </div>
-          <div className="mb-2">
+          <div className="mb-4">
             <label
               htmlFor="desc"
-              className="block text-gray-800 font-medium text-sm mb-1 text-left"
+              className="block text-gray-300 font-medium text-sm mb-1 text-left"
             >
               Description:
             </label>
             <textarea
               value={desc}
               onChange={(e) => setDesc(e.target.value)}
-              className="shadow appearance-none border border-blue-300 rounded-md w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-400 bg-blue-50 placeholder-gray-400"
+              className="shadow appearance-none border border-gray-600 rounded-md w-full py-2 px-3 text-white leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500 bg-gray-700 placeholder-gray-400"
               placeholder="Enter task description..."
               rows={2}
               required
             />
           </div>
-          <div className="mb-2">
+          <div className="mb-4">
             <label
               htmlFor="dueDate"
-              className="block text-gray-800 font-medium text-sm mb-1 text-left"
+              className="block text-gray-300 font-medium text-sm mb-1 text-left"
             >
               Due Date:
             </label>
@@ -114,21 +114,21 @@ const EditTaskDialog: React.FC<EditTaskDialogProps> = ({
               type="date"
               value={dueDate}
               onChange={(e) => setDueDate(e.target.value)}
-              className="shadow appearance-none border border-blue-300 rounded-md w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-400 bg-blue-50 placeholder-gray-400"
+              className="shadow appearance-none border border-gray-600 rounded-md w-full py-2 px-3 text-white leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500 bg-gray-700"
               required
             />
           </div>
-          <div className="mb-2">
+          <div className="mb-4">
             <label
               htmlFor="status"
-              className="block text-gray-800 font-medium text-sm mb-1 text-left"
+              className="block text-gray-300 font-medium text-sm mb-1 text-left"
             >
               Status:
             </label>
             <select
               value={status}
               onChange={(e) => setStatus(Number(e.target.value) as TaskStatus)}
-              className="shadow appearance-none border border-blue-300 rounded-md w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-400 bg-blue-50"
+              className="shadow appearance-none border border-gray-600 rounded-md w-full py-2 px-3 text-white leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500 bg-gray-700"
               required
             >
               <option value={0}>Pending</option>
@@ -137,17 +137,17 @@ const EditTaskDialog: React.FC<EditTaskDialogProps> = ({
             </select>
           </div>
 
-          <div className="flex justify-between mt-2">
+          <div className="flex justify-between mt-5">
             <button
               type="submit"
-              className="bg-blue-500 hover:bg-blue-600 text-white py-1.5 px-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+              className="bg-blue-600 hover:bg-blue-700 text-white py-1.5 px-3 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300"
             >
               Update Task
             </button>
             <button
               type="button"
               onClick={onClose}
-              className="bg-gray-500 hover:bg-gray-600 text-white py-1.5 px-2 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-400"
+              className="bg-gray-600 hover:bg-gray-700 text-white py-1.5 px-3 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-500 transition duration-300"
             >
               Cancel
             </button>

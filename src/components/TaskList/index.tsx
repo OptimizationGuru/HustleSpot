@@ -5,8 +5,11 @@ import { filterTasksByDefaultDates } from '../../helpers/FilterTask';
 import {
   taskNotFoundMsg,
   TaskStatus,
+  taskToday,
   taskTodayMsg,
+  taskTomorrow,
   taskTomorrowMsg,
+  taskYesterday,
   taskYesterdayMsg,
 } from '../../constants';
 import { Task } from '../../types';
@@ -110,7 +113,7 @@ const TaskList: React.FC<TaskListProps> = ({ onCreateTaskClick }) => {
   if (welcome) return <WelcomeCard onCreateTaskClick={onCreateTaskClick} />;
 
   return (
-    <div className="w-full flex flex-col items-center gap-6 sm:gap-8 mt-28 px-2 sm:px-4 lg:px-8">
+    <div className="w-full flex flex-col items-center gap-6 sm:gap-8 mt-28 px-2 sm:px-4 lg:px-8 bg-gray-900 text-gray-200">
       <TaskListHeader onSelect={FilterTaskbyStatus} onSort={SortTasks} />
       <div
         className={`w-full max-w-6xl ${
@@ -126,10 +129,11 @@ const TaskList: React.FC<TaskListProps> = ({ onCreateTaskClick }) => {
                 key={task.id}
                 taskDetails={task}
                 onUpdate={updateTaskInList}
+                className="bg-gray-800 border border-gray-700 text-gray-200"
               />
             ))
           ) : (
-            <div className="flex flex-col items-center justify-center w-full p-4 border border-gray-300 rounded-lg shadow-md">
+            <div className="flex flex-col items-center justify-center w-full p-4 border border-gray-700 rounded-lg shadow-md bg-gray-800 text-gray-300">
               <NoTasksCard
                 onCreateTaskClick={onCreateTaskClick}
                 msg={taskNotFoundMsg}
@@ -138,8 +142,11 @@ const TaskList: React.FC<TaskListProps> = ({ onCreateTaskClick }) => {
           )
         ) : (
           <>
-            <div className="flex flex-col gap-2 sm:gap-4 items-center justify-center w-full">
-              <p className="text-lg sm:text-xl font-bold">Yesterday</p>
+            <div className="flex flex-col gap-2 sm:gap-4 items-center justify-center w-full text-gray-300">
+              <p className="text-lg sm:text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-600 shadow-lg">
+                {taskYesterday}
+              </p>
+
               <div className="flex flex-col flex-wrap items-center justify-center gap-4 sm:gap-6 w-full">
                 {filterTasksByDefaultDates(activeTaskList).tasksYesterday
                   .length === 0 ? (
@@ -154,14 +161,18 @@ const TaskList: React.FC<TaskListProps> = ({ onCreateTaskClick }) => {
                         key={task.id}
                         taskDetails={task}
                         onUpdate={updateTaskInList}
+                        className="bg-gray-800 border border-gray-700 text-gray-200"
                       />
                     )
                   )
                 )}
               </div>
             </div>
-            <div className="flex flex-col gap-2 sm:gap-4 items-center justify-center w-full">
-              <p className="text-lg sm:text-xl font-bold">Today</p>
+            <div className="flex flex-col gap-2 sm:gap-4 items-center justify-center w-full text-gray-300">
+              <p className="text-lg sm:text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-600 shadow-lg">
+                {taskToday}
+              </p>
+
               <div className="flex flex-col flex-wrap items-center justify-center gap-4 sm:gap-6 w-full">
                 {filterTasksByDefaultDates(activeTaskList).tasksToday.length ===
                 0 ? (
@@ -176,14 +187,17 @@ const TaskList: React.FC<TaskListProps> = ({ onCreateTaskClick }) => {
                         key={task.id}
                         taskDetails={task}
                         onUpdate={updateTaskInList}
+                        className="bg-gray-800 border border-gray-700 text-gray-200"
                       />
                     )
                   )
                 )}
               </div>
             </div>
-            <div className="flex flex-col gap-2 sm:gap-4 items-center justify-center w-full">
-              <p className="text-lg sm:text-xl font-bold">Tomorrow</p>
+            <div className="flex flex-col gap-2 sm:gap-4 items-center justify-center w-full text-gray-300">
+              <p className="text-lg sm:text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-600 shadow-lg">
+                {taskTomorrow}
+              </p>
               <div className="flex flex-col flex-wrap items-center justify-center gap-4 sm:gap-6 w-full">
                 {filterTasksByDefaultDates(activeTaskList).tasksTomorrow
                   .length === 0 ? (
@@ -198,6 +212,7 @@ const TaskList: React.FC<TaskListProps> = ({ onCreateTaskClick }) => {
                         key={task.id}
                         taskDetails={task}
                         onUpdate={updateTaskInList}
+                        className="bg-gray-800 border border-gray-700 text-gray-200"
                       />
                     )
                   )

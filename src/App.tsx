@@ -17,7 +17,7 @@ function App() {
   };
   return (
     <Provider store={store}>
-      <div className="flex flex-col items-center justify-start min-h-screen bg-gray-100">
+      <div className="flex flex-col items-center justify-start min-h-screen bg-gray-900 text-gray-100">
         <div className="w-full">
           <Navbar
             onCreateTaskClick={handleCreateButtonClick}

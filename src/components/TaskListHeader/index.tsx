@@ -20,12 +20,12 @@ const TaskListHeader: React.FC<TaskListHeaderProps> = ({
   };
 
   return (
-    <div className="flex flex-col md:flex-row items-center justify-between w-full max-w-7xl p-4 bg-gray-200 rounded-lg shadow-md">
-      <h2 className="text-lg font-semibold text-gray-700">Task Lists</h2>
+    <div className="flex flex-col md:flex-row items-center justify-between w-full max-w-7xl p-4 bg-gray-800 rounded-lg shadow-md">
+      <h2 className="text-lg font-semibold text-white">Task Lists</h2>
 
       <div className="flex gap-4 items-center">
         <select
-          className="px-4 py-[10px] bg-blue-500 text-white font-medium rounded-md hover:bg-blue-600 transition duration-300 shadow-md focus:outline-none"
+          className="px-4 py-[10px] bg-blue-600 text-white font-medium rounded-md hover:bg-blue-700 transition duration-300 shadow-md focus:outline-none"
           defaultValue="Pending"
           onChange={(e) => {
             const status = Number(e.target.value) as TaskStatus;
@@ -35,23 +35,32 @@ const TaskListHeader: React.FC<TaskListHeaderProps> = ({
           <option value="" disabled>
             Filter by Status
           </option>
-          <option value={10} className="text-gray-700 bg-gray-100">
+          <option value={TaskStatus.ALL} className="text-gray-700 bg-gray-600">
             All
           </option>
-          <option value={0} className="text-gray-700 bg-gray-100">
+          <option
+            value={TaskStatus.PENDING}
+            className="text-gray-700 bg-gray-600"
+          >
             Pending
           </option>
-          <option value={1} className="text-gray-700 bg-gray-100">
+          <option
+            value={TaskStatus.IN_PROGRESS}
+            className="text-gray-700 bg-gray-600"
+          >
             In Progress
           </option>
-          <option value={2} className="text-gray-700 bg-gray-100">
+          <option
+            value={TaskStatus.COMPLETED}
+            className="text-gray-700 bg-gray-600"
+          >
             Completed
           </option>
         </select>
 
         <button
           onClick={handleSort}
-          className="flex items-center px-4 py-2 bg-blue-500 text-white font-medium rounded-md hover:bg-blue-600 transition duration-300 shadow-md"
+          className="flex items-center px-4 py-2 bg-blue-600 text-white font-medium rounded-md hover:bg-blue-700 transition duration-300 shadow-md"
         >
           {sortOrder === 'asc' ? (
             <>
@@ -60,7 +69,8 @@ const TaskListHeader: React.FC<TaskListHeaderProps> = ({
             </>
           ) : (
             <>
-              <FaSortAmountDownAlt className="mr-2" /> Sort Descending
+              <FaSortAmountDownAlt className="mr-2" />
+              Sort Descending
             </>
           )}
         </button>

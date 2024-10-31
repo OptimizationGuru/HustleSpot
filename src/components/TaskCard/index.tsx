@@ -10,9 +10,14 @@ import { formatToIndianDate } from '../../utils/dateFunction';
 interface TaskCardProps {
   taskDetails: Task;
   onUpdate: (updatedTask: Task) => void;
+  className?: string;
 }
 
-const TaskCard: React.FC<TaskCardProps> = ({ taskDetails, onUpdate }) => {
+const TaskCard: React.FC<TaskCardProps> = ({
+  taskDetails,
+  onUpdate,
+  className,
+}) => {
   const dispatch = useDispatch();
   const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
 
@@ -30,10 +35,12 @@ const TaskCard: React.FC<TaskCardProps> = ({ taskDetails, onUpdate }) => {
   const formattedDueDate = formatToIndianDate(taskDetails?.dueDate);
 
   return (
-    <div className="relative w-full max-w-xs sm:max-w-sm md:max-w-md flex flex-col gap-6 items-center justify-center mx-auto shadow-2xl rounded-xl bg-gradient-to-b from-blue-50 to-blue-100 p-6 sm:p-8 m-4 md:m-8 border border-blue-300 transition-transform transform hover:scale-105 hover:shadow-3xl">
+    <div
+      className={`${className} relative w-full max-w-xs sm:max-w-sm md:max-w-md flex flex-col gap-4 items-center justify-center mx-auto shadow-lg rounded-lg bg-gray-800 p-6 sm:p-8 m-4 md:m-8 border border-gray-700 transition-transform transform hover:scale-105 hover:shadow-xl`}
+    >
       <div className="absolute top-4 right-4 flex gap-2">
         <span
-          className={`${statusColor} text-white text-xs font-semibold px-3 py-1 sm:px-4 sm:py-2 rounded-2xl shadow-md`}
+          className={`${statusColor} text-blue-900 text-xs font-semibold px-3 py-1 sm:px-4 sm:py-2 rounded-2xl shadow-md`}
         >
           {statusLabel}
         </span>
@@ -43,34 +50,37 @@ const TaskCard: React.FC<TaskCardProps> = ({ taskDetails, onUpdate }) => {
         >
           <CiEdit size={20} />
         </span>
-        <span className="bg-red-500 text-white text-xs font-semibold p-1.5 sm:p-2 rounded-full shadow-md hover:bg-red-600 transition duration-300 cursor-pointer">
-          <CiTrash size={20} onClick={() => deleteTaskbyId(taskDetails.id)} />
+        <span
+          className="bg-red-500 text-white text-xs font-semibold p-1.5 sm:p-2 rounded-full shadow-md hover:bg-red-600 transition duration-300 cursor-pointer"
+          onClick={() => deleteTaskbyId(taskDetails.id)}
+        >
+          <CiTrash size={20} />
         </span>
       </div>
 
       <div className="w-full flex items-center gap-3 sm:gap-4 mt-10 sm:mt-12">
-        <span className="bg-purple-200 text-purple-800 text-xs font-semibold px-3 py-1 rounded-full shadow-md">
+        <span className="bg-purple-700 text-purple-100 text-xs font-semibold px-3 py-1 rounded-full shadow-md">
           Title
         </span>
-        <p className="text-gray-800 font-semibold text-sm sm:text-lg truncate">
+        <p className="text-white font-semibold text-base sm:text-lg truncate">
           {taskDetails?.title}
         </p>
       </div>
 
       <div className="w-full flex flex-col gap-1 sm:gap-2">
-        <span className="bg-blue-200 text-blue-800 text-xs font-semibold px-3 py-1 rounded-full shadow-md">
+        <span className="bg-blue-700 text-blue-100 text-xs font-semibold px-3 py-1 rounded-full shadow-md">
           Description
         </span>
-        <p className="text-gray-700 text-xs sm:text-sm truncate">
+        <p className="text-gray-200 text-sm sm:text-base truncate">
           {taskDetails?.desc}
         </p>
       </div>
 
       <div className="w-full flex flex-col gap-1 sm:gap-2">
-        <span className="bg-green-200 text-green-800 text-xs font-semibold px-3 py-1 rounded-full shadow-md">
+        <span className="bg-green-700 text-green-100 text-xs font-semibold px-3 py-1 rounded-full shadow-md">
           Due Date
         </span>
-        <p className="text-gray-700 text-xs sm:text-sm">{formattedDueDate}</p>
+        <p className="text-gray-200 text-sm sm:text-base">{formattedDueDate}</p>
       </div>
 
       <EditTaskDialog

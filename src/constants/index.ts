@@ -34,3 +34,7 @@ export const taskYesterdayMsg =
 
 export const taskNotFoundMsg =
   "Oops! We couldn't find any tasks matching your search. Try different keywords or create a new task! 🔍✨";
+
+export const taskToday = 'Due Today';
+export const taskTomorrow = 'Due Tomorrow';
+export const taskYesterday = 'Due Yesterday';
