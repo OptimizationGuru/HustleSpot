@@ -27,10 +27,10 @@ const Navbar: React.FC<NavbarProps> = ({
       className="flex flex-col sm:flex-row sm:items-center sm:justify-between px-6 py-1 bg-gradient-to-r from-gray-950 via-gray-900 to-black
  text-gray-100 w-full shadow-xl fixed top-0 z-50"
     >
-      <div className="flex items-center justify-between gap-2 w-full p-4 rounded-lg">
+      <div className="flex items-center justify-between gap-2 w-full p-4 rounded-lg shadow-2xl">
         <button
           onClick={() => window.location.reload()}
-          className="px-6 py-2 text-xl text-white text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-green-500 font-semibold rounded-full shadow-lg"
+          className="px-6 py-2 text-xl text-white text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-green-500 font-semibold rounded-full shadow-xl"
         >
           Hustle
         </button>
