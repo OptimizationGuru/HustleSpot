@@ -47,8 +47,8 @@ const NewTask: React.FC<NewTaskProps> = ({ onClose }) => {
       onSubmit={createNewTask}
     >
       {({ setFieldValue, resetForm }) => (
-        <Form className="w-full max-w-lg mx-auto -my-1 p-8 bg-gradient-to-r from-blue-50 to-blue-100 rounded-lg shadow-lg m-4">
-          <div className="flex justify-between items-center mb-6">
+        <Form className="w-full max-w-xl mx-auto p-6 bg-gradient-to-r from-blue-50 to-blue-100 rounded-lg shadow-lg">
+          <div className="flex justify-between items-center mb-4">
             <h2 className="text-2xl font-semibold text-gray-800">
               Create New Task
             </h2>
@@ -64,13 +64,13 @@ const NewTask: React.FC<NewTaskProps> = ({ onClose }) => {
           <div className="mb-4">
             <label
               htmlFor="title"
-              className="block text-gray-800 font-medium  text-md  mb-2 text-left"
+              className="block text-gray-800 font-medium text-md mb-1 text-left"
             >
               Title:
             </label>
             <Field
               name="title"
-              className="shadow appearance-none border border-blue-300 rounded-md w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-400 bg-blue-50 placeholder-gray-400"
+              className="shadow border border-blue-300 rounded-md w-full py-2 px-3 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-400 bg-blue-50 placeholder-gray-400"
               placeholder="Enter task title..."
             />
             <ErrorMessage name="title">
@@ -83,7 +83,7 @@ const NewTask: React.FC<NewTaskProps> = ({ onClose }) => {
           <div className="mb-4">
             <label
               htmlFor="desc"
-              className="block text-gray-800 font-medium  text-md  mb-2 text-left"
+              className="block text-gray-800 font-medium text-md mb-1 text-left"
             >
               Description:
             </label>
@@ -91,7 +91,7 @@ const NewTask: React.FC<NewTaskProps> = ({ onClose }) => {
               name="desc"
               as="textarea"
               rows="3"
-              className="shadow appearance-none border border-blue-300 rounded-md w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-400 bg-blue-50 placeholder-gray-400"
+              className="shadow border border-blue-300 rounded-md w-full py-2 px-3 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-400 bg-blue-50 placeholder-gray-400"
               placeholder="Enter task description..."
             />
             <ErrorMessage name="desc">
@@ -104,18 +104,18 @@ const NewTask: React.FC<NewTaskProps> = ({ onClose }) => {
           <div className="mb-4">
             <label
               htmlFor="dueDate"
-              className="block text-gray-800 font-medium  text-md  mb-2 text-left"
+              className="block text-gray-800 font-medium text-md mb-1 text-left"
             >
               Due Date:
             </label>
             <Field
               name="dueDate"
               type="date"
-              className="shadow appearance-none border border-blue-300 rounded-md w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-400 bg-blue-50"
+              className="shadow border border-blue-300 rounded-md w-full py-2 px-3 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-400 bg-blue-50"
             />
             <ErrorMessage name="dueDate">
               {(msg) => (
-                <div className="text-red-500 text-md italic mt-1">{msg}</div>
+                <div className="text-red-500 text-xs italic mt-1">{msg}</div>
               )}
             </ErrorMessage>
           </div>
@@ -123,14 +123,14 @@ const NewTask: React.FC<NewTaskProps> = ({ onClose }) => {
           <div className="mb-4">
             <label
               htmlFor="status"
-              className="block text-gray-800 font-medium  text-md  mb-2 text-left"
+              className="block text-gray-800 font-medium text-md mb-1 text-left"
             >
               Status:
             </label>
             <Field
               as="select"
               name="status"
-              className="block appearance-none w-full bg-blue-50 border border-blue-300 hover:border-blue-500 px-4 py-2 pr-8 rounded-md leading-tight focus:outline-none focus:ring-2 focus:ring-blue-400"
+              className="block w-full bg-blue-50 border border-blue-300 px-4 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
             >
               <option value={TaskStatus.PENDING}>Pending</option>
               <option value={TaskStatus.IN_PROGRESS}>In Progress</option>
@@ -141,14 +141,14 @@ const NewTask: React.FC<NewTaskProps> = ({ onClose }) => {
           <div className="flex justify-between mt-6">
             <button
               type="submit"
-              className="bg-blue-500 hover:bg-blue-600 text-white  py-2 px-4 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+              className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
             >
               Create Task
             </button>
             <button
               type="button"
               onClick={() => resetForm()}
-              className="bg-gray-500 hover:bg-gray-600 text-white  py-2 px-4 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-400"
+              className="bg-gray-500 hover:bg-gray-600 text-white py-2 px-4 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-400"
             >
               Clear
             </button>

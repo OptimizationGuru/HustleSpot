@@ -18,8 +18,6 @@ const TaskList = () => {
   const [isDefaultView, setIsDefaultView] = useState(true);
   const [currentStatus, setCurrentStatus] = useState<TaskStatus | null>(null);
 
- 
-
   const FilterTaskbyStatus = useCallback(
     (status: TaskStatus) => {
       let filteredTasks;
@@ -88,28 +86,36 @@ const TaskList = () => {
   }
 
   return (
-    <div className="w-screen flex flex-col items-center gap-8 my-8">
+    <div className="w-full flex flex-col items-center gap-6 sm:gap-8 mt-28 px-2 sm:px-4 lg:px-8">
       <TaskListHeader onSelect={FilterTaskbyStatus} onSort={SortTasks} />
       <div
-        className={`w-full max-w-7xl ${
+        className={`w-full max-w-6xl ${
           isSortActive || isFiltered
-            ? 'flex flex-wrap justify-evenly gap-6'
-            : 'grid grid-cols-1 md:grid-cols-3 gap-6'
+            ? 'flex flex-wrap justify-center gap-4 sm:gap-6'
+            : 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6'
         }`}
       >
         {isSortActive || isFiltered ? (
-          displayTasks.map((task: Task) => (
-            <TaskCard
-              key={task.id}
-              taskDetails={task}
-              onUpdate={updateTaskInList}
-            />
-          ))
+          displayTasks.length > 0 ? (
+            displayTasks.map((task: Task) => (
+              <TaskCard
+                key={task.id}
+                taskDetails={task}
+                onUpdate={updateTaskInList}
+              />
+            ))
+          ) : (
+            <div className="flex flex-col items-center justify-center w-full p-4 border border-gray-300 rounded-lg shadow-md">
+              <p className="text-lg font-semibold text-gray-700">
+                No Tasks Listed
+              </p>
+            </div>
+          )
         ) : (
           <>
-            <div className="flex flex-col gap-0 items-center justify-center">
-              <p className="text-xl font-bold -my-4">Yesterday</p>
-              <div className="flex flex-col flex-wrap items-center justify-center gap-6">
+            <div className="flex flex-col gap-2 sm:gap-4 items-center justify-center w-full">
+              <p className="text-lg sm:text-xl font-bold">Yesterday</p>
+              <div className="flex flex-col flex-wrap items-center justify-center gap-4 sm:gap-6 w-full">
                 {filterTasksByDefaultDates(activeTaskList).tasksYesterday.map(
                   (task: Task) => (
                     <TaskCard
@@ -121,9 +127,9 @@ const TaskList = () => {
                 )}
               </div>
             </div>
-            <div className="flex flex-col gap-0 items-center justify-center">
-              <p className="text-xl font-bold -my-4">Today</p>
-              <div className="flex flex-col flex-wrap items-center justify-center gap-6">
+            <div className="flex flex-col gap-2 sm:gap-4 items-center justify-center w-full">
+              <p className="text-lg sm:text-xl font-bold">Today</p>
+              <div className="flex flex-col flex-wrap items-center justify-center gap-4 sm:gap-6 w-full">
                 {filterTasksByDefaultDates(activeTaskList).tasksToday.map(
                   (task: Task) => (
                     <TaskCard
@@ -135,9 +141,9 @@ const TaskList = () => {
                 )}
               </div>
             </div>
-            <div className="flex flex-col gap-0 items-center justify-center">
-              <p className="text-xl font-bold -my-4">Tomorrow</p>
-              <div className="flex flex-col flex-wrap items-center justify-center gap-6">
+            <div className="flex flex-col gap-2 sm:gap-4 items-center justify-center w-full">
+              <p className="text-lg sm:text-xl font-bold">Tomorrow</p>
+              <div className="flex flex-col flex-wrap items-center justify-center gap-4 sm:gap-6 w-full">
                 {filterTasksByDefaultDates(activeTaskList).tasksTomorrow.map(
                   (task: Task) => (
                     <TaskCard

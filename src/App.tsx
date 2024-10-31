@@ -8,11 +8,11 @@ import TaskList from './components/TaskList';
 function App() {
   return (
     <Provider store={store}>
-      <div className="w-screen h-screen flex flex-col gap-4 items-center justify-center bg-gray-100">
-        <div className="mx-auto w-screen h-auto text-center justify-center">
+      <div className="flex flex-col items-center justify-start min-h-screen bg-gray-100">
+        <div className="w-full">
           <Navbar />
         </div>
-        <div className="w-screen h-auto items-center justify-center overflow-y-auto">
+        <div className="flex-grow w-full overflow-y-auto">
           <TaskList />
         </div>
       </div>

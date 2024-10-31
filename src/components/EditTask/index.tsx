@@ -57,9 +57,11 @@ const EditTaskDialog: React.FC<EditTaskDialogProps> = ({
 
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-      <div className="bg-gradient-to-r from-blue-50 to-blue-100 p-3 rounded-lg shadow-lg w-64 md:w-72">
+      <div className="bg-gradient-to-r from-blue-50 to-blue-100 p-3 sm:p-5 rounded-lg shadow-lg w-64 sm:w-72 md:w-80">
         <div className="flex justify-between items-center mb-2">
-          <h2 className="text-xl font-semibold text-gray-800">Edit Task</h2>
+          <h2 className="text-lg sm:text-xl font-semibold text-gray-800">
+            Edit Task
+          </h2>
           <button
             type="button"
             onClick={onClose}
@@ -138,14 +140,14 @@ const EditTaskDialog: React.FC<EditTaskDialogProps> = ({
           <div className="flex justify-between mt-2">
             <button
               type="submit"
-              className="bg-blue-500 hover:bg-blue-600 text-white py-1.5 px-2.5 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+              className="bg-blue-500 hover:bg-blue-600 text-white py-1.5 px-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
             >
               Update Task
             </button>
             <button
               type="button"
               onClick={onClose}
-              className="bg-gray-500 hover:bg-gray-600 text-white py-1.5 px-2.5 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-400"
+              className="bg-gray-500 hover:bg-gray-600 text-white py-1.5 px-2 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-400"
             >
               Cancel
             </button>
