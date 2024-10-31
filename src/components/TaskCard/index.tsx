@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { CiEdit, CiTrash } from 'react-icons/ci';
 import { Task } from '../../types';
 import { getStatusLabel } from '../../helpers/GetTaskStatus';
 import { useDispatch } from 'react-redux';
 import { deleteTask } from '../../store/taskSlice';
+import EditTaskDialog from '../EditTask';
 
 interface TaskCardProps {
   taskDetails: Task;
@@ -11,9 +12,14 @@ interface TaskCardProps {
 
 const TaskCard: React.FC<TaskCardProps> = ({ taskDetails }) => {
   const dispatch = useDispatch();
+  const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
 
   const deleteTaskbyId = (task_id: number) => {
     dispatch(deleteTask(task_id));
+  };
+
+  const handleEditClick = () => {
+    setIsEditDialogOpen(true); // Open the edit dialog
   };
 
   return (
@@ -22,10 +28,13 @@ const TaskCard: React.FC<TaskCardProps> = ({ taskDetails }) => {
         <span className="bg-teal-500 text-white text-xs font-semibold px-4 py-2 rounded-2xl shadow-md">
           {getStatusLabel(taskDetails?.status)}
         </span>
-        <span className="bg-blue-500 text-white text-xs font-semibold p-2 rounded-full shadow-md hover:bg-blue-600 transition duration-300">
+        <span
+          className="bg-blue-500 text-white text-xs font-semibold p-2 rounded-full shadow-md hover:bg-blue-600 transition duration-300 cursor-pointer"
+          onClick={handleEditClick} // Trigger edit
+        >
           <CiEdit size={20} />
         </span>
-        <span className="bg-red-500 text-white text-xs font-semibold p-2 rounded-full shadow-md hover:bg-red-600 transition duration-300">
+        <span className="bg-red-500 text-white text-xs font-semibold p-2 rounded-full shadow-md hover:bg-red-600 transition duration-300 cursor-pointer">
           <CiTrash
             size={20}
             onClick={() => {
@@ -57,6 +66,13 @@ const TaskCard: React.FC<TaskCardProps> = ({ taskDetails }) => {
         </span>
         <p className="text-gray-700 text-sm">{taskDetails?.dueDate}</p>
       </div>
+
+      {/* Edit Task Dialog */}
+      <EditTaskDialog
+        isOpen={isEditDialogOpen}
+        onClose={() => setIsEditDialogOpen(false)} // Close the dialog
+        taskDetails={taskDetails}
+      />
     </div>
   );
 };
