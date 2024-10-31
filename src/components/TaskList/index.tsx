@@ -7,8 +7,13 @@ import { filterTasksByDefaultDates } from '../../helpers/FilterTask';
 import { TaskStatus } from '../../constants';
 import { Task } from '../../types';
 import { updateTask } from '../../store/taskSlice';
+import NoTasksCard from '../NoTaskCard';
 
-const TaskList = () => {
+interface TaskListProps {
+  onCreateTaskClick: () => void;
+}
+
+const TaskList: React.FC<TaskListProps> = ({ onCreateTaskClick }) => {
   const dispatch = useDispatch();
   const tasks = useSelector((state: RootState) => state.task.tasks);
   const [activeTaskList, setActiveTaskList] = useState<Task[]>([]);
@@ -106,9 +111,10 @@ const TaskList = () => {
             ))
           ) : (
             <div className="flex flex-col items-center justify-center w-full p-4 border border-gray-300 rounded-lg shadow-md">
-              <p className="text-lg font-semibold text-gray-700">
-                No Tasks Listed
-              </p>
+              <NoTasksCard
+                onCreateTaskClick={onCreateTaskClick}
+                day="Till Now"
+              />
             </div>
           )
         ) : (
@@ -116,13 +122,21 @@ const TaskList = () => {
             <div className="flex flex-col gap-2 sm:gap-4 items-center justify-center w-full">
               <p className="text-lg sm:text-xl font-bold">Yesterday</p>
               <div className="flex flex-col flex-wrap items-center justify-center gap-4 sm:gap-6 w-full">
-                {filterTasksByDefaultDates(activeTaskList).tasksYesterday.map(
-                  (task: Task) => (
-                    <TaskCard
-                      key={task.id}
-                      taskDetails={task}
-                      onUpdate={updateTaskInList}
-                    />
+                {filterTasksByDefaultDates(activeTaskList).tasksYesterday
+                  .length === 0 ? (
+                  <NoTasksCard
+                    onCreateTaskClick={onCreateTaskClick}
+                    day="Yesterday"
+                  />
+                ) : (
+                  filterTasksByDefaultDates(activeTaskList).tasksYesterday.map(
+                    (task: Task) => (
+                      <TaskCard
+                        key={task.id}
+                        taskDetails={task}
+                        onUpdate={updateTaskInList}
+                      />
+                    )
                   )
                 )}
               </div>
@@ -130,13 +144,21 @@ const TaskList = () => {
             <div className="flex flex-col gap-2 sm:gap-4 items-center justify-center w-full">
               <p className="text-lg sm:text-xl font-bold">Today</p>
               <div className="flex flex-col flex-wrap items-center justify-center gap-4 sm:gap-6 w-full">
-                {filterTasksByDefaultDates(activeTaskList).tasksToday.map(
-                  (task: Task) => (
-                    <TaskCard
-                      key={task.id}
-                      taskDetails={task}
-                      onUpdate={updateTaskInList}
-                    />
+                {filterTasksByDefaultDates(activeTaskList).tasksToday.length ===
+                0 ? (
+                  <NoTasksCard
+                    onCreateTaskClick={onCreateTaskClick}
+                    day="Today"
+                  />
+                ) : (
+                  filterTasksByDefaultDates(activeTaskList).tasksToday.map(
+                    (task: Task) => (
+                      <TaskCard
+                        key={task.id}
+                        taskDetails={task}
+                        onUpdate={updateTaskInList}
+                      />
+                    )
                   )
                 )}
               </div>
@@ -144,13 +166,21 @@ const TaskList = () => {
             <div className="flex flex-col gap-2 sm:gap-4 items-center justify-center w-full">
               <p className="text-lg sm:text-xl font-bold">Tomorrow</p>
               <div className="flex flex-col flex-wrap items-center justify-center gap-4 sm:gap-6 w-full">
-                {filterTasksByDefaultDates(activeTaskList).tasksTomorrow.map(
-                  (task: Task) => (
-                    <TaskCard
-                      key={task.id}
-                      taskDetails={task}
-                      onUpdate={updateTaskInList}
-                    />
+                {filterTasksByDefaultDates(activeTaskList).tasksTomorrow
+                  .length === 0 ? (
+                  <NoTasksCard
+                    onCreateTaskClick={onCreateTaskClick}
+                    day="Tomorrow"
+                  />
+                ) : (
+                  filterTasksByDefaultDates(activeTaskList).tasksTomorrow.map(
+                    (task: Task) => (
+                      <TaskCard
+                        key={task.id}
+                        taskDetails={task}
+                        onUpdate={updateTaskInList}
+                      />
+                    )
                   )
                 )}
               </div>
