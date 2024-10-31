@@ -3,10 +3,12 @@ import { Task } from '../types';
 
 export interface TaskState {
   tasks: Task[];
+  searchKey: string;
 }
 
 const initialState: TaskState = {
   tasks: [],
+  searchKey: '',
 };
 
 const taskSlice = createSlice({
@@ -27,8 +29,12 @@ const taskSlice = createSlice({
         state.tasks[index] = action.payload;
       }
     },
+    updateSearchKey: (state, action: PayloadAction<string>) => {
+      state.searchKey = action.payload;
+    },
   },
 });
 
-export const { addTask, deleteTask, updateTask } = taskSlice.actions;
+export const { addTask, deleteTask, updateTask, updateSearchKey } =
+  taskSlice.actions;
 export default taskSlice.reducer;

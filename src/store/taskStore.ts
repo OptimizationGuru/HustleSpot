@@ -16,6 +16,7 @@ const loadState = (): RootState => {
       return {
         task: {
           tasks: [],
+          searchKey: '',
         },
       };
     }
@@ -24,6 +25,7 @@ const loadState = (): RootState => {
     return {
       task: {
         tasks: [],
+        searchKey: '',
       },
     };
   }

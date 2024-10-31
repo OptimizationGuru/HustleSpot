@@ -2,6 +2,8 @@ import React from 'react';
 import NewTask from '../CreateTask';
 import Sidebar from '../CreateTask/Sidebar';
 import { IoSearch } from 'react-icons/io5';
+import { useDispatch } from 'react-redux';
+import { updateSearchKey } from '../../store/taskSlice';
 
 interface NavbarProps {
   onCreateTaskClick: () => void;
@@ -13,6 +15,12 @@ const Navbar: React.FC<NavbarProps> = ({
   onCloseSidebar,
   isSideDrawerOpen,
 }) => {
+  const dispatch = useDispatch();
+
+  const handleSearch = (key: string) => {
+    dispatch(updateSearchKey(key));
+  };
+
   return (
     <div className="flex flex-col md:flex-row items-center justify-between gap-4 p-6 bg-gradient-to-r from-gray-200 via-gray-300 to-gray-400 w-full shadow-lg fixed top-0 z-50 mt-2">
       <div className="flex items-center gap-2 ml-4 md:ml-20">
@@ -25,6 +33,9 @@ const Navbar: React.FC<NavbarProps> = ({
         <IoSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500" />
         <input
           type="text"
+          onChange={(e) => {
+            handleSearch(e.target.value);
+          }}
           placeholder="Search tasks..."
           className="w-full p-3 pl-10 rounded-lg shadow-inner text-gray-700 bg-white focus:outline-none focus:ring-2 focus:ring-gray-400"
         />

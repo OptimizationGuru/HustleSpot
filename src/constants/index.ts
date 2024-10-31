@@ -24,3 +24,13 @@ export const yesterdayDateTimestamp = new Date(
 ).getTime();
 
 export const delayTime = 1000;
+
+export const taskTodayMsg =
+  'No tasks for today! Take a breather or start something new! 🎉';
+export const taskTomorrowMsg =
+  'Nothing scheduled for tomorrow. Plan ahead or enjoy the free time! 🌅';
+export const taskYesterdayMsg =
+  "Nothing left from yesterday! You're all caught up! 👏";
+
+export const taskNotFoundMsg =
+  "Oops! We couldn't find any tasks matching your search. Try different keywords or create a new task! 🔍✨";

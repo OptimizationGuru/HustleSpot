@@ -1,21 +1,21 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import TaskCard from '../TaskCard';
 import TaskListHeader from '../TaskListHeader';
-import { useSelector, useDispatch } from 'react-redux';
-import { RootState } from '../../store/taskStore';
 import { filterTasksByDefaultDates } from '../../helpers/FilterTask';
-import { TaskStatus } from '../../constants';
+import { taskNotFoundMsg, TaskStatus, taskTodayMsg, taskTomorrowMsg, taskYesterdayMsg } from '../../constants';
 import { Task } from '../../types';
 import { updateTask } from '../../store/taskSlice';
 import NoTasksCard from '../NoTAskCard/index';
+import useFilterTaskbySearchKey from '../SearchTask/SearchTask';
+import { useDispatch } from 'react-redux';
 
 interface TaskListProps {
   onCreateTaskClick: () => void;
-}   
+}
 
 const TaskList: React.FC<TaskListProps> = ({ onCreateTaskClick }) => {
   const dispatch = useDispatch();
-  const tasks = useSelector((state: RootState) => state.task.tasks);
+  const tasks = useFilterTaskbySearchKey();
   const [activeTaskList, setActiveTaskList] = useState<Task[]>([]);
   const [isSortActive, setIsSortActive] = useState(false);
   const [isDescending, setIsDescending] = useState(false);
@@ -111,10 +111,7 @@ const TaskList: React.FC<TaskListProps> = ({ onCreateTaskClick }) => {
             ))
           ) : (
             <div className="flex flex-col items-center justify-center w-full p-4 border border-gray-300 rounded-lg shadow-md">
-              <NoTasksCard
-                onCreateTaskClick={onCreateTaskClick}
-                day="Till Now"
-              />
+              <NoTasksCard onCreateTaskClick={onCreateTaskClick} msg={taskNotFoundMsg}/>
             </div>
           )
         ) : (
@@ -126,7 +123,7 @@ const TaskList: React.FC<TaskListProps> = ({ onCreateTaskClick }) => {
                   .length === 0 ? (
                   <NoTasksCard
                     onCreateTaskClick={onCreateTaskClick}
-                    day="Yesterday"
+                    msg={taskYesterdayMsg}
                   />
                 ) : (
                   filterTasksByDefaultDates(activeTaskList).tasksYesterday.map(
@@ -148,7 +145,7 @@ const TaskList: React.FC<TaskListProps> = ({ onCreateTaskClick }) => {
                 0 ? (
                   <NoTasksCard
                     onCreateTaskClick={onCreateTaskClick}
-                    day="Today"
+                    msg={taskTodayMsg}
                   />
                 ) : (
                   filterTasksByDefaultDates(activeTaskList).tasksToday.map(
@@ -170,7 +167,7 @@ const TaskList: React.FC<TaskListProps> = ({ onCreateTaskClick }) => {
                   .length === 0 ? (
                   <NoTasksCard
                     onCreateTaskClick={onCreateTaskClick}
-                    day="Tomorrow"
+                    msg={taskTomorrowMsg}
                   />
                 ) : (
                   filterTasksByDefaultDates(activeTaskList).tasksTomorrow.map(
