@@ -7,11 +7,11 @@ import { filterTasksByDefaultDates } from '../../helpers/FilterTask';
 import { TaskStatus } from '../../constants';
 import { Task } from '../../types';
 import { updateTask } from '../../store/taskSlice';
-import NoTasksCard from '../../components/NoTaskCard/index';
+import NoTasksCard from '../NoTAskCard/index';
 
 interface TaskListProps {
   onCreateTaskClick: () => void;
-}
+}   
 
 const TaskList: React.FC<TaskListProps> = ({ onCreateTaskClick }) => {
   const dispatch = useDispatch();
