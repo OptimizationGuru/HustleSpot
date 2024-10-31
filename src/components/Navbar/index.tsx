@@ -28,9 +28,13 @@ const Navbar: React.FC<NavbarProps> = ({
  text-gray-100 w-full shadow-xl fixed top-0 z-50"
     >
       <div className="flex items-center justify-between gap-2 w-full p-4 rounded-lg">
-        <span className="px-6 py-2 text-xl text-white text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-green-500 font-semibold rounded-full shadow-lg">
+        <button
+          onClick={() => window.location.reload()}
+          className="px-6 py-2 text-xl text-white text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-green-500 font-semibold rounded-full shadow-lg"
+        >
           Hustle
-        </span>
+        </button>
+
         <div className="rounded-lg hover:bg-gradient-to-r hover:from-gray-900 hover:to-gray-800 transition-all duration-300">
           <button
             onClick={onCreateTaskClick}
