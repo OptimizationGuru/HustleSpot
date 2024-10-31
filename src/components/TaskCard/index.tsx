@@ -40,12 +40,12 @@ const TaskCard: React.FC<TaskCardProps> = ({
     >
       <div className="absolute top-4 right-4 flex gap-2">
         <span
-          className={`${statusColor} text-blue-900 text-xs font-semibold px-3 py-1 sm:px-4 sm:py-2 rounded-2xl shadow-md`}
+          className={`${statusColor} text-blue-400 text-xs font-semibold px-3 py-1 sm:px-4 sm:py-2 rounded-2xl shadow-md`}
         >
           {statusLabel}
         </span>
         <span
-          className="bg-blue-500 text-white text-xs font-semibold p-1.5 sm:p-2 rounded-full shadow-md hover:bg-blue-600 transition duration-300 cursor-pointer"
+          className="bg-blue-600 text-white text-xs font-semibold p-1.5 sm:p-2 rounded-full shadow-md hover:bg-blue-700 transition duration-300 cursor-pointer"
           onClick={handleEditClick}
         >
           <CiEdit size={20} />
@@ -59,30 +59,32 @@ const TaskCard: React.FC<TaskCardProps> = ({
       </div>
 
       <div className="w-full flex items-center gap-3 sm:gap-4 mt-10 sm:mt-12">
-        <span className="bg-purple-700 text-purple-100 text-xs font-semibold px-3 py-1 rounded-full shadow-md">
+        <span className="bg-gray-700 text-gray-300 text-xs font-semibold px-3 py-1 rounded-full shadow-md">
           Title
         </span>
-        <p className="text-white font-semibold text-base sm:text-lg truncate">
+        <p className="text-gray-300 font-semibold text-base sm:text-lg truncate shadow-md">
           {taskDetails?.title}
         </p>
       </div>
 
       <div className="w-full flex flex-col gap-1 sm:gap-2">
-        <span className="bg-blue-700 text-blue-100 text-xs font-semibold px-3 py-1 rounded-full shadow-md">
+        <span className="bg-gray-700 text-gray-300 text-xs font-semibold px-3 py-1 rounded-full shadow-md">
           Description
         </span>
         <div className="max-h-24 overflow-y-auto">
-          <p className="text-gray-200 text-sm sm:text-base">
+          <p className="text-gray-400 text-sm sm:text-base shadow-md">
             {taskDetails?.desc}
           </p>
         </div>
       </div>
 
       <div className="w-full flex flex-col gap-1 sm:gap-2">
-        <span className="bg-green-700 text-green-100 text-xs font-semibold px-3 py-1 rounded-full shadow-md">
+        <span className="bg-gray-700 text-gray-300 text-xs font-semibold px-3 py-1 rounded-full shadow-md">
           Due Date
         </span>
-        <p className="text-gray-200 text-sm sm:text-base">{formattedDueDate}</p>
+        <p className="text-gray-400 text-sm sm:text-base shadow-md">
+          {formattedDueDate}
+        </p>
       </div>
 
       <EditTaskDialog

@@ -17,15 +17,15 @@ function App() {
   };
   return (
     <Provider store={store}>
-      <div className="flex flex-col items-center justify-start min-h-screen bg-gray-900 text-gray-100">
-        <div className="w-full">
+      <div className=" w-screen flex flex-col items-center justify-start min-h-screen bg-gradient-to-r from-gray-950 via-gray-900 to-black text-gray-100">
+        <div className="w-full ">
           <Navbar
             onCreateTaskClick={handleCreateButtonClick}
             isSideDrawerOpen={isSidebarOpen}
             onCloseSidebar={handleCloseSidebar}
           />
         </div>
-        <div className="flex-grow w-full overflow-y-auto px-4 sm:mr-12">
+        <div className="flex-grow w-full  overflow-y-auto px-4 sm:mr-12 bg-gradient-to-r from-gray-950 via-gray-900 to-black">
           <TaskList onCreateTaskClick={handleCreateButtonClick} />
         </div>
       </div>

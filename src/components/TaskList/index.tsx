@@ -110,11 +110,20 @@ const TaskList: React.FC<TaskListProps> = ({ onCreateTaskClick }) => {
     ];
   }
 
-  if (welcome) return <WelcomeCard onCreateTaskClick={onCreateTaskClick} />;
+  if (welcome)
+    return (
+      <div className="container mx-auto">
+        <WelcomeCard onCreateTaskClick={onCreateTaskClick} />
+      </div>
+    );
 
   return (
-    <div className="w-full flex flex-col items-center md:justify-center gap-6 sm:gap-8 mt-28 px-2  sm:px-4 lg:px-8 bg-gray-900 text-gray-200">
-      <div className='flex flex-col items-center justify-center w-full md:ml-12'>
+    <div
+      className="w-screen border-white border-t flex flex-col items-center md:justify-center gap-6 sm:gap-8 mt-28 px-2   sm:px-4 lg:px-8 bg-gradient-to-r from-gray-950 via-gray-900 to-black
+
+ text-gray-200"
+    >
+      <div className="flex flex-col items-center justify-center w-full md:ml-12">
         <TaskListHeader onSelect={FilterTaskbyStatus} onSort={SortTasks} />
       </div>
       <div
@@ -145,7 +154,7 @@ const TaskList: React.FC<TaskListProps> = ({ onCreateTaskClick }) => {
         ) : (
           <>
             <div className="flex flex-col gap-2 sm:gap-4 items-center justify-center w-full text-gray-300">
-              <p className="text-lg sm:text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-600 shadow-lg">
+              <p className="text-lg sm:text-xl font-bold text-transparent bg-clip-text  bg-blue-400  shadow-lg">
                 {taskYesterday}
               </p>
 
@@ -171,7 +180,7 @@ const TaskList: React.FC<TaskListProps> = ({ onCreateTaskClick }) => {
               </div>
             </div>
             <div className="flex flex-col gap-2 sm:gap-4 items-center justify-center w-full text-gray-300">
-              <p className="text-lg sm:text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-600 shadow-lg">
+              <p className="text-lg sm:text-xl font-bold text-transparent bg-clip-text bg-blue-400  shadow-lg">
                 {taskToday}
               </p>
 
@@ -197,7 +206,7 @@ const TaskList: React.FC<TaskListProps> = ({ onCreateTaskClick }) => {
               </div>
             </div>
             <div className="flex flex-col gap-2 sm:gap-4 items-center justify-center w-full text-gray-300">
-              <p className="text-lg sm:text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-600 shadow-lg">
+              <p className="text-lg sm:text-xl font-bold text-transparent bg-clip-text bg-blue-400   shadow-lg">
                 {taskTomorrow}
               </p>
               <div className="flex flex-col flex-wrap items-center justify-center gap-4 sm:gap-6 w-full">

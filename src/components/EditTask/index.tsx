@@ -56,10 +56,10 @@ const EditTaskDialog: React.FC<EditTaskDialogProps> = ({
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-60">
+    <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-60 z-50">
       <div className="bg-gray-800 border border-gray-700 p-6 sm:p-8 rounded-lg shadow-lg w-72 sm:w-80 md:w-96">
         <div className="flex justify-between items-center mb-4">
-          <h2 className="text-lg sm:text-xl font-semibold text-white">
+          <h2 className="text-lg sm:text-xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-gray-500">
             Edit Task
           </h2>
           <button
@@ -71,10 +71,10 @@ const EditTaskDialog: React.FC<EditTaskDialogProps> = ({
           </button>
         </div>
         <form onSubmit={handleSubmit}>
-          <div className="mb-4">
+          <div className="mb-2">
             <label
               htmlFor="title"
-              className="block text-gray-300 font-medium text-sm mb-1 text-left"
+              className="block text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-500 font-medium text-sm mb-1 text-left"
             >
               Title:
             </label>
@@ -87,10 +87,10 @@ const EditTaskDialog: React.FC<EditTaskDialogProps> = ({
               required
             />
           </div>
-          <div className="mb-4">
+          <div className="mb-2">
             <label
               htmlFor="desc"
-              className="block text-gray-300 font-medium text-sm mb-1 text-left"
+              className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-green-500 font-medium text-sm mb-1 text-left"
             >
               Description:
             </label>
@@ -103,10 +103,10 @@ const EditTaskDialog: React.FC<EditTaskDialogProps> = ({
               required
             />
           </div>
-          <div className="mb-4">
+          <div className="mb-2">
             <label
               htmlFor="dueDate"
-              className="block text-gray-300 font-medium text-sm mb-1 text-left"
+              className="block text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-500 font-medium text-sm mb-1 text-left"
             >
               Due Date:
             </label>
@@ -118,10 +118,10 @@ const EditTaskDialog: React.FC<EditTaskDialogProps> = ({
               required
             />
           </div>
-          <div className="mb-4">
+          <div className="mb-2">
             <label
               htmlFor="status"
-              className="block text-gray-300 font-medium text-sm mb-1 text-left"
+              className="block text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-blue-500 font-medium text-sm mb-1 text-left"
             >
               Status:
             </label>
@@ -137,7 +137,7 @@ const EditTaskDialog: React.FC<EditTaskDialogProps> = ({
             </select>
           </div>
 
-          <div className="flex justify-between mt-5">
+          <div className="flex justify-between mt-4">
             <button
               type="submit"
               className="bg-blue-600 hover:bg-blue-700 text-white py-1.5 px-3 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300"
