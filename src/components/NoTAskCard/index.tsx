@@ -17,12 +17,12 @@ const NoTasksCard: React.FC<NoTasksCardProps> = ({
         <p className="text-lg sm:text-xl font-semibold text-gray-300 text-center">
           {msg}
         </p>
-        <p className="text-sm text-gray-400 mt-2 text-center">
+        <p className="text-sm sm:text-base text-gray-400 mt-2 text-center">
           Start by creating a new task to get organized!
         </p>
         <button
           onClick={onCreateTaskClick}
-          className="mt-4 bg-blue-600 text-white text-sm font-semibold py-2 px-4 rounded-full hover:bg-blue-700 transition duration-300"
+          className="mt-4 bg-gray-800 hover:bg-gray-700 text-white text-sm font-semibold py-2 px-4 rounded-full transition duration-300"
         >
           Create Task
         </button>
