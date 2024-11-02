@@ -40,7 +40,7 @@ const TaskCard: React.FC<TaskCardProps> = ({
     >
       <div className="absolute top-4 right-4 flex gap-2">
         <span
-          className={`${statusColor} text-blue-400 text-xs font-semibold px-3 py-1 sm:px-4 sm:py-2 rounded-2xl shadow-md`}
+          className={`${statusColor}  text-xs font-semibold px-3 py-1 sm:px-4 sm:py-2 rounded-2xl shadow-md`}
         >
           {statusLabel}
         </span>
