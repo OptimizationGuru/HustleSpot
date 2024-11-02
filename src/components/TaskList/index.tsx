@@ -15,9 +15,10 @@ import {
 import { Task } from '../../types';
 import { updateTask } from '../../store/taskSlice';
 import useFilterTaskbySearchKey from '../SearchTask/SearchTask';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import WelcomeCard from '../Welcome';
 import NoTasksCard from '../NoTAskCard';
+import { RootState } from '../../store/taskStore';
 
 interface TaskListProps {
   onCreateTaskClick: () => void;
@@ -34,6 +35,7 @@ const TaskList: React.FC<TaskListProps> = ({ onCreateTaskClick }) => {
   const [currentStatus, setCurrentStatus] = useState<TaskStatus | null>(null);
   const [welcome, setWelcome] = useState<boolean>(false);
   const [isSearchKeyOn, setIsSearchKeyOn] = useState<boolean>(false);
+  const { searchKey } = useSelector((store: RootState) => store.task);
 
   useEffect(() => {
     if (tasks.length === 0) {
@@ -113,7 +115,7 @@ const TaskList: React.FC<TaskListProps> = ({ onCreateTaskClick }) => {
     ];
   }
 
-  if (welcome && isSearchKeyOn) {
+  if (welcome && searchKey.length > 0) {
     return (
       <div className="container mx-auto flex items-center justify-center h-screen">
         <NoTasksCard

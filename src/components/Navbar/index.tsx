@@ -30,19 +30,17 @@ const Navbar: React.FC<NavbarProps> = ({
       <div className="flex items-center justify-between gap-2 w-full p-4 rounded-lg shadow-2xl">
         <button
           onClick={() => window.location.reload()}
-          className="px-6 py-2 text-xl text-white text-transparent bg-clip-text bg-gradient-to-r from-purple-800  to-red-600 font-semibold rounded-full shadow-xl"
+          className="px-6 py-2 text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-green-500  rounded-full shadow-xl"
         >
           Hustle
         </button>
 
-        <div className="rounded-lg hover:bg-gradient-to-r hover:from-gray-900 hover:to-gray-800 transition-all duration-300">
-          <button
-            onClick={onCreateTaskClick}
-            className="w-48 h-12 p-4 font-semibold rounded-lg shadow-xl text-xl text-white text-transparent bg-clip-text bg-gradient-to-r from-purple-700 to-red-500 hover:from-purple-700 hover:to-green-600 transition-all duration-300"
-          >
-            Create Task
-          </button>
-        </div>
+        <button
+          onClick={onCreateTaskClick}
+          className="mt-2 px-6 py-2 text-white rounded-lg bg-gradient-to-r from-blue-500 to-red-400 hover:from-blue-600 hover:to-red-500 transition duration-300 font-semibold shadow-lg"
+        >
+          Create Task
+        </button>
       </div>
 
       <div className="flex flex-grow max-w-md w-full relative mx-4 sm:mx-8 mt-4 sm:mt-0">
