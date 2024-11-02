@@ -147,10 +147,11 @@ const NewTask: React.FC<NewTaskProps> = ({ onClose }) => {
             <div className="flex justify-between mt-8">
               <button
                 type="submit"
-                className="bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-md focus:ring-2 focus:ring-blue-400 transition-all duration-200 shadow-lg"
+                className="bg-gradient-to-r from-blue-500 to-red-400 hover:from-blue-600 hover:to-red-500 text-white py-2 px-4 rounded-md focus:ring-2 focus:ring-blue-400 transition-all duration-200 shadow-lg"
               >
-                Create Task
+                Add New Task
               </button>
+
               <button
                 type="button"
                 onClick={() => resetForm()}
