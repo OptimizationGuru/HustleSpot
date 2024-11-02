@@ -140,10 +140,11 @@ const EditTaskDialog: React.FC<EditTaskDialogProps> = ({
           <div className="flex justify-between mt-4">
             <button
               type="submit"
-              className="bg-blue-600 hover:bg-blue-700 text-white py-1.5 px-3 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300"
+              className="bg-gradient-to-r from-blue-500 to-red-400 hover:from-blue-600 hover:to-red-500 text-white py-1.5 px-3 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300"
             >
               Update Task
             </button>
+
             <button
               type="button"
               onClick={onClose}
