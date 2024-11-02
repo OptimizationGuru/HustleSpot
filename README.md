@@ -3,6 +3,17 @@
 
 HustleSpot is a web application that allows users to create, manage, and organize their tasks efficiently. With a user-friendly interface and intuitive features, this application helps improve productivity and task management.
 
+## Screenshots
+
+![Homepage](https://github.com/OptimizationGuru/task-manager/blob/main/public/1.png))
+![Create New Task](https://github.com/OptimizationGuru/task-manager/blob/main/public/2.png))
+![List of task](https://github.com/OptimizationGuru/task-manager/blob/main/public/3.png))
+![Edit Task ](https://github.com/OptimizationGuru/task-manager/blob/main/public/4.png))
+![Task List](https://github.com/OptimizationGuru/task-manager/blob/main/public/6.png))
+![No Completed Task available](https://github.com/OptimizationGuru/task-manager/blob/main/public/7.png))
+![Screenshot of my project](https://github.com/OptimizationGuru/task-manager/blob/main/public/8.png))
+![Search Task](https://github.com/OptimizationGuru/task-manager/blob/main/public/9.png))
+
 
 
 ## Features
