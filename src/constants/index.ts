@@ -38,3 +38,7 @@ export const taskNotFoundMsg =
 export const taskToday = 'Due Today';
 export const taskTomorrow = 'Due Tomorrow';
 export const taskYesterday = 'Due Yesterday';
+
+export const confirmationTitle = 'Are you sure?';
+export const confirmationText = 'This action will delete the task permanently.';
+export const confirmationIcon = 'warning';

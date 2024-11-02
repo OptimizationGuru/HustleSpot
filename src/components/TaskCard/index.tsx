@@ -6,6 +6,12 @@ import { useDispatch } from 'react-redux';
 import { deleteTask } from '../../store/taskSlice';
 import EditTaskDialog from '../EditTask';
 import { formatToIndianDate } from '../../utils/dateFunction';
+import { showAlert } from '../Alert';
+import {
+  confirmationIcon,
+  confirmationText,
+  confirmationTitle,
+} from '../../constants';
 
 interface TaskCardProps {
   taskDetails: Task;
@@ -22,9 +28,16 @@ const TaskCard: React.FC<TaskCardProps> = ({
   const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
 
   const deleteTaskbyId = (task_id: number) => {
-    dispatch(deleteTask(task_id));
+    showAlert(
+      confirmationTitle,
+      confirmationText,
+      confirmationIcon,
+      () => {
+        dispatch(deleteTask(task_id));
+      }
+    );
   };
-
+  
   const handleEditClick = () => {
     setIsEditDialogOpen(true);
   };
