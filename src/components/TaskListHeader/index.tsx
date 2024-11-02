@@ -21,7 +21,7 @@ const TaskListHeader: React.FC<TaskListHeaderProps> = ({
 
   return (
     <div className="flex flex-col sm:flex-row items-center justify-between w-full max-w-4xl p-4 mt-16 md:justify-between  bg-gradient-to-r from-gray-950 via-blue-950 to-gray-800 rounded-md shadow-md">
-      <h2 className="text-base sm:text-lg font-semibold text-transparent bg-clip-text bg-gradient-to-r from-purple-700 to-red-500 shadow-lg">
+      <h2 className="text-base sm:text-lg font-semibold text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-red-500 shadow-lg">
         Task Lists
       </h2>
 
