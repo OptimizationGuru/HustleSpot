@@ -33,17 +33,10 @@ const TaskList: React.FC<TaskListProps> = ({ onCreateTaskClick }) => {
   const [isFiltered, setIsFiltered] = useState(false);
   const [isDefaultView, setIsDefaultView] = useState(true);
   const [currentStatus, setCurrentStatus] = useState<TaskStatus | null>(null);
-  const [welcome, setWelcome] = useState<boolean>(false);
 
-  const { searchKey } = useSelector((store: RootState) => store.task);
-
-  useEffect(() => {
-    if (tasks.length === 0) {
-      setWelcome(true);
-    } else {
-      setWelcome(false);
-    }
-  }, [tasks]);
+  const { searchKey, isLandedFirstTime } = useSelector(
+    (store: RootState) => store.task
+  );
 
   const FilterTaskbyStatus = useCallback(
     (status: TaskStatus) => {
@@ -113,7 +106,7 @@ const TaskList: React.FC<TaskListProps> = ({ onCreateTaskClick }) => {
     ];
   }
 
-  if (welcome && searchKey.length > 0) {
+  if (isLandedFirstTime && searchKey.length > 0) {
     return (
       <div className="container mx-auto flex items-center justify-center h-screen">
         <NoTasksCard
@@ -122,7 +115,7 @@ const TaskList: React.FC<TaskListProps> = ({ onCreateTaskClick }) => {
         />
       </div>
     );
-  } else if (welcome) {
+  } else if (isLandedFirstTime) {
     return (
       <div className="container mx-auto flex items-center justify-center h-screen">
         <WelcomeCard onCreateTaskClick={onCreateTaskClick} />

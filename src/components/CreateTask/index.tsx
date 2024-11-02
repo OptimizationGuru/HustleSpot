@@ -4,7 +4,7 @@ import * as Yup from 'yup';
 import { ErrorMessage, Field, Form, Formik, FormikHelpers } from 'formik';
 import { Task } from '../../types';
 import { useDispatch } from 'react-redux';
-import { addTask } from '../../store/taskSlice';
+import { addTask, updateIsLandedFirstTime } from '../../store/taskSlice';
 import { IoMdClose } from 'react-icons/io';
 
 interface NewTaskProps {
@@ -36,6 +36,7 @@ const NewTask: React.FC<NewTaskProps> = ({ onClose }) => {
         dueDate: new Date(values.dueDate).getTime(),
       })
     );
+    dispatch(updateIsLandedFirstTime());
     formikHelpers.resetForm();
     onClose();
   };

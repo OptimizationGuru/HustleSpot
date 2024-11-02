@@ -17,6 +17,7 @@ const loadState = (): RootState => {
         task: {
           tasks: [],
           searchKey: '',
+          isLandedFirstTime: true,
         },
       };
     }
@@ -26,6 +27,7 @@ const loadState = (): RootState => {
       task: {
         tasks: [],
         searchKey: '',
+        isLandedFirstTime: true,
       },
     };
   }

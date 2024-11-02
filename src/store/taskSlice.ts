@@ -4,11 +4,13 @@ import { Task } from '../types';
 export interface TaskState {
   tasks: Task[];
   searchKey: string;
+  isLandedFirstTime: boolean;
 }
 
 const initialState: TaskState = {
   tasks: [],
   searchKey: '',
+  isLandedFirstTime: true,
 };
 
 const taskSlice = createSlice({
@@ -32,9 +34,12 @@ const taskSlice = createSlice({
     updateSearchKey: (state, action: PayloadAction<string>) => {
       state.searchKey = action.payload;
     },
+    updateIsLandedFirstTime: (state) => {
+      state.isLandedFirstTime = false;
+    },
   },
 });
 
-export const { addTask, deleteTask, updateTask, updateSearchKey } =
+export const { addTask, deleteTask, updateTask, updateSearchKey, updateIsLandedFirstTime } =
   taskSlice.actions;
 export default taskSlice.reducer;
